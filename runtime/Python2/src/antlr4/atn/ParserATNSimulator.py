@@ -1603,15 +1603,17 @@ class ParserATNSimulator(ATNSimulator):
 
     def reportAttemptingFullContext(self, dfa, conflictingAlts, configs, startIndex, stopIndex):
         if ParserATNSimulator.debug or ParserATNSimulator.retry_debug:
+            interval = range(startIndex, stopIndex + 1)
             print("reportAttemptingFullContext decision=" + str(dfa.decision) + ":" + str(configs) +
-                               ", input=" + self.parser.getTokenStream().getText(startIndex, stopIndex + 1))
+                               ", input=" + self.parser.getTokenStream().getText(interval))
         if self.parser is not None:
             self.parser.getErrorListenerDispatch().reportAttemptingFullContext(self.parser, dfa, startIndex, stopIndex, conflictingAlts, configs)
 
     def reportContextSensitivity(self, dfa, prediction, configs, startIndex, stopIndex):
         if ParserATNSimulator.debug or ParserATNSimulator.retry_debug:
+            interval = range(startIndex, stopIndex + 1)
             print("reportContextSensitivity decision=" + str(dfa.decision) + ":" + str(configs) +
-                               ", input=" + self.parser.getTokenStream().getText(startIndex, stopIndex + 1))
+                               ", input=" + self.parser.getTokenStream().getText(interval))
         if self.parser is not None:
             self.parser.getErrorListenerDispatch().reportContextSensitivity(self.parser, dfa, startIndex, stopIndex, prediction, configs)
 
@@ -1635,8 +1637,9 @@ class ParserATNSimulator(ATNSimulator):
 #				}
 #				i++;
 #			}
-             print("reportAmbiguity " + str(ambigAlts) + ":" + str(configs) +
-                               ", input=" + self.parser.getTokenStream().getText(startIndex, stopIndex + 1))
+            interval = range(startIndex, stopIndex + 1)
+            print("reportAmbiguity " + str(ambigAlts) + ":" + str(configs) +
+                               ", input=" + self.parser.getTokenStream().getText(interval))
         if self.parser is not None:
             self.parser.getErrorListenerDispatch().reportAmbiguity(self.parser, dfa, startIndex, stopIndex, exact, ambigAlts, configs)
 

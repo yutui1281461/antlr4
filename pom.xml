@@ -3,7 +3,6 @@
   ~ Use of this file is governed by the BSD 3-clause license that
   ~ can be found in the LICENSE.txt file in the project root.
   -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
@@ -145,7 +144,20 @@
 					</filesets>
 				</configuration>
 			</plugin>
-		</plugins>
+		<plugin>
+                <groupId>org.ekstazi</groupId>
+                <artifactId>ekstazi-maven-plugin</artifactId>
+                <version>4.6.3</version>
+                <executions>
+                    <execution>
+                        <id>ekstazi</id>
+                        <goals>
+                            <goal>select</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -165,3 +177,4 @@
 		</pluginManagement>
 	</build>
 </project>
+
